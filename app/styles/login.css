@@ -1,0 +1,9 @@
+span.label {
+  width: 75px;
+  display: inline-block;
+}
+
+#login input {
+  margin-left: 1.0em;
+}
+

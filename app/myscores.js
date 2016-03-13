@@ -20,7 +20,7 @@ export default class MyScores extends React.Component {
 
     render() {
         return (
-          <div>
+          <div id="myscores">
             <table>
 
               <tbody>
