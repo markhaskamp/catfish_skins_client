@@ -11,17 +11,12 @@ import '../app/styles/app.css';
 //               show one golfers scores
 // action types: add a score,
 //               update all scores
-// store: {counter: n,
-//         allScores: [{id: n, name: 'john', scores: [0,4,3,4,4,...]},
-//                     {id: n, name: 'tony', scores: [0,4,3,4,4,...]}
-//                    ]
+// store: { allScores: [ {name: 'john', scores: [0,4,3,4,4,...]},
+//                       {name: 'tony', scores: [0,4,3,4,4,...]} ]
 //        }
 
 
-let initialStore = {counter: 0,
-                    allScores: [{id:1, name: 'john', scores: [0,0,0,0,0,0,0,0,0,0]}
-                               ]
-                   };
+let initialStore = { allScores: [] };
 
 let store = createStore(storeReducer);
 
@@ -29,10 +24,23 @@ function storeReducer(state=initialStore, action) {
 
     switch(action.type) {
     case 'add-score':
-        state.counter++;
 
-        return {counter: state.counter++,
-                allScores: state.allScores};
+        let url = '/strokes/' + 'mark' + '/' + action.hole + '/' + action.strokes;
+        console.log(url);
+
+        $.ajax({'url': url })
+          .done(function(data) {
+            console.log('.done');
+            console.log(data);
+          })
+          .fail(function(f) {
+            console.log('.fail');
+            console.log(f);
+          })
+
+        return {
+                allScores: state.allScores
+        };
 
     default:
         return state;
@@ -40,32 +48,61 @@ function storeReducer(state=initialStore, action) {
 }
 
 export default class App extends React.Component {
-    render() {
-        return (
-            <div className="container">
-                <MyScores />
-            </div>
-        );
+
+  render() {
+
+    document.cookie='catfishId=;expires=Thu, 01 Jan 1970 00:00:00 UTC';
+    let catfishId = getCookie('catfishId');
+
+    if (catfishId === undefined) {
+      console.log('catfishId: is undefined');
+
+    } else if (catfishId === null) {
+      console.log('catfishId: is null');
+
+    } else if (catfishId === '') {
+      console.log('catfishId: is empty string');
+
+    } else {
+      console.log('catfishId: ' + catfishId);
     }
+
+    if (catfishId === '') {
+      return (
+          <div className="container">
+            <Login />
+          </div>
+      );
+    } else {
+      return (
+        <div className="container">
+          <MyScores />
+        </div>
+      );
+    }
+  }
 }
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+    }
+    return "";
+} 
 
 export class MyScores extends React.Component {
 
     constructor() {
         super();
-
-        this.state = {counter: 0,
-                      scores: [0,0,0,0,0,0,0,0,0]};
-
-        store.subscribe(() => {
-            this.setState(store.getState())
-        })
     }
 
     handleChangeHoleScore(e) {
       let hole = e.target.id;
       let selector = '#' + hole;
-      let action = {}
 
       store.dispatch({type: 'add-score',
                       "hole": hole,
@@ -75,7 +112,6 @@ export class MyScores extends React.Component {
     render() {
         return (
           <div>
-            <div>{this.state.counter}</div>
             <table>
 
               <tbody>
@@ -109,6 +145,13 @@ export class MyScores extends React.Component {
             )
     }
 }
+
+export class Login extends React.Component {
+  render() {
+    return <div>eddie would go</div>
+  }
+}
+
 
 render(<App/>, document.getElementById('app'));
 
