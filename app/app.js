@@ -54,6 +54,7 @@ export default class App extends React.Component {
   render() {
 
     let catfishId = getCookie('catfishId');
+    console.log(`catfishId: ${catfishId}`);
 
     if (catfishId === '') {
       return (

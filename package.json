@@ -5,9 +5,9 @@
   "main": "bundle.js",
   "scripts": {
     "start": "webpack-dev-server --hot --inline",
-    "dev": "node_modules/.bin/webpack --watch bundle.js && node_modules/.bin/webpack-dev-server",
-    "build": "node_modules/.bin/webpack bundle.js",
-    "prod": "node_modules/.bin/webpack -p bundle.js",
+    "dev": "node_modules/.bin/webpack --watch app.js && node_modules/.bin/webpack-dev-server",
+    "build": "node_modules/.bin/webpack ",
+    "prod": "node_modules/.bin/webpack -p ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Mark",

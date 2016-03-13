@@ -1,12 +1,29 @@
 import React from "react";
 import { render} from "react-dom";
+import $ from 'jquery';
 
 import '../app/styles/login.css';
 
 export default class Login extends React.Component { 
     
     handleClickLogin(e) {
-      console.log('always read the plaque');
+      // ajax call to server
+      // { name: ---, pwd: --- }
+
+      let url = '/login';
+      let name = $('#txtName').val();
+      let pwd = $('#txtPassword').val();
+      let payload = `{"name": "${name}", "pwd": "${pwd}"}`;
+
+      $.ajax({'method':'POST', 'url':url, 'data':payload})
+        .done(function(data) {
+          console.log('data:');
+          console.log(data);
+        })
+        .fail(function(f) {
+          console.log('f:');
+          console.log(f);
+        })
     }
 
 
