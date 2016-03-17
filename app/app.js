@@ -1,5 +1,6 @@
 import React from "react";
 import { render} from "react-dom";
+import { Provider } from "react-redux";
 import { createStore } from 'redux';
 import $ from 'jquery';
 
@@ -55,6 +56,7 @@ export default class App extends React.Component {
   render() {
 
     let catfishId = getCookie('catfishId');
+    catfishId = '1234';
     console.log(`catfishId: ${catfishId}`);
 
     if (catfishId === '') {
@@ -87,7 +89,10 @@ function getCookie(cname) {
 
 
 
-render(<App/>, document.getElementById('app'));
-
-
+render(
+    <Provider store={store}>
+        <App/>
+    </Provider>,
+    document.getElementById('app')
+);
 

@@ -1,9 +1,11 @@
 import React from "react";
+import { connect} from "react-redux";
 import { render} from "react-dom";
+import $ from 'jquery';
 
 import '../app/styles/myscores.css';
 
-export default class MyScores extends React.Component {
+class MyScores extends React.Component {
 
     constructor() {
         super();
@@ -13,11 +15,9 @@ export default class MyScores extends React.Component {
       let hole = e.target.id;
       let selector = '#' + hole;
 
-      /*
-      store.dispatch({type: 'add-score',
-                      "hole": hole,
-                      "strokes": $(selector).val()});
-      */
+      this.props.dispatch({type:      'add-score',
+                           "hole":    hole,
+                           "strokes": $(selector).val()});
     }
 
     render() {
@@ -56,4 +56,6 @@ export default class MyScores extends React.Component {
             )
     }
 }
+
+export default connect()(MyScores);
 
