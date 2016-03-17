@@ -5,6 +5,7 @@ import $ from 'jquery';
 
 import Login from './login.js';
 import MyScores from './myscores.js';
+import AllScores from './allscores.js';
 import '../app/styles/app.css';
 
 
@@ -66,6 +67,7 @@ export default class App extends React.Component {
       return (
         <div className="container">
           <MyScores />
+          <AllScores />
         </div>
       );
     }

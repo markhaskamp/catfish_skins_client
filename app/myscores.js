@@ -13,9 +13,11 @@ export default class MyScores extends React.Component {
       let hole = e.target.id;
       let selector = '#' + hole;
 
+      /*
       store.dispatch({type: 'add-score',
                       "hole": hole,
                       "strokes": $(selector).val()});
+      */
     }
 
     render() {
