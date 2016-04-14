@@ -8,7 +8,7 @@ import '../app/styles/myscores.css';
 class MyScores extends React.Component {
 
     constructor() {
-        super();
+      super();
     }
 
     handleChangeHoleScore(e) {

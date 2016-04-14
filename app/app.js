@@ -10,41 +10,51 @@ import AllScores from './allscores.js';
 import '../app/styles/app.css';
 
 
-// components: form to enter my scores
-//             list of all scores
-//               show one golfers scores
-// action types: add a score,
-//               update all scores
-// store: { allScores: [ {name: 'john', scores: [0,4,3,4,4,...]},
-//                       {name: 'tony', scores: [0,4,3,4,4,...]} ]
-//        }
-
-
-let initialStore = { allScores: [] };
+let initialStore = { allScores: { Scores: [] }};
 
 let store = createStore(storeReducer);
 
 function storeReducer(state=initialStore, action) {
 
+        /*
+    console.log('=== in storeReducer ===');
+    console.log('action:');
+    console.log(action)
+        */
+
     switch(action.type) {
     case 'add-score':
 
         let url = '/strokes/' + 'mark' + '/' + action.hole + '/' + action.strokes;
-        console.log(url);
+        // console.log(`url: ${url}`);
 
+        let foo = {"Scores": [
+                {"name": "john", "scores": [0,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+                {"name": "tony", "scores": [0,2,3,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+                {"name": "joe", "scores":  [0,3,4,5,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}
+            ]
+        }
+
+        /*
         $.ajax({'url': url })
           .done(function(data) {
             console.log('.done');
             console.log(data);
           })
           .fail(function(f) {
-            console.log('.fail');
+            console.log('FAIL \\/ \\/ \\/');
             console.log(f);
+            console.log('/\\ /\\ /\\');
           })
+          */
 
-        return {
-                allScores: state.allScores
-        };
+                // allScores: state.allScores
+                /*
+                this.setState({"allScores": foo}) 
+                return state
+                */
+
+        return {"allScores": foo}
 
     default:
         return state;
@@ -68,8 +78,8 @@ export default class App extends React.Component {
     } else {
       return (
         <div className="container">
-          <MyScores />
-          <AllScores />
+            <MyScores store={store} />
+            <AllScores store={store} />
         </div>
       );
     }
