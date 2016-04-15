@@ -16,6 +16,7 @@ class MyScores extends React.Component {
       let selector = '#' + hole;
 
       this.props.dispatch({type:      'add-score',
+                           "name":    $('#txtName').val(),
                            "hole":    hole,
                            "strokes": $(selector).val()});
     }
@@ -27,7 +28,7 @@ class MyScores extends React.Component {
 
               <tbody>
               <tr>
-                <td><div className="nameLabel">Mark</div></td>
+                <td><div className="nameLabel"><input id="txtName" placeholder="name"/></div></td>
                 <td><input id="1" placeholder="1" onChange={this.handleChangeHoleScore.bind(this)}/></td>
                 <td><input id="2" placeholder="2" onChange={this.handleChangeHoleScore.bind(this)}/></td>
                 <td><input id="3" placeholder="3" onChange={this.handleChangeHoleScore.bind(this)}/></td>

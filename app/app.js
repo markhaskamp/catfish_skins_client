@@ -25,8 +25,8 @@ function storeReducer(state=initialStore, action) {
     switch(action.type) {
     case 'add-score':
 
-        let url = '/strokes/' + 'mark' + '/' + action.hole + '/' + action.strokes;
-        // console.log(`url: ${url}`);
+        let url = '/strokes/' + action.name + '/' + action.hole + '/' + action.strokes;
+        console.log(`url: ${url}`);
 
         let foo = {"Scores": [
                 {"name": "john", "scores": [0,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
