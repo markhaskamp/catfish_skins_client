@@ -25,41 +25,30 @@ class AllScores extends React.Component {
         const { store } = props;
         // const state = store.getState();
 
-        /*
-        console.log('>>> this <<<');
-        console.log(this);
-
-        console.log('>>> store  <<<') ;
-        console.log(store);
-        */
         let state = store.getState();
-        // console.log(state.allScores.Scores);
 
-        // {state.allScores.Scores.map(this.showGolfer)}
         return (
             <div id="allscores">
               <hr />
-              {this.showGolfer(state.allScores.Scores)}
+              {this.showGolfer(state.allScores.AllStrokes)}
             </div>
       );
     }
 
-    foo(v) {
-        return <div style="width: 95%">{v.name} {v.scores}</div>
-    }
-
     showGolfer(scores) {
+        if (scores != undefined) {
         return scores.map((s) => {
                 return (
-                                <div className="allScoreRow">
-                            <div className="holeName">{s.name}</div>
-                            {s.scores.map((strokes) => {
+                    <div className="allScoreRow">
+                            <div className="holeName">{s.Name}</div>
+                            {s.Scores.map((strokes) => {
                         return <div className="holeStrokes">{strokes}</div>;
                 })}
                 <div className="foo">&nbsp;</div>
                 </div>
                 );
         });
+        }
     }
 
 }

@@ -29,10 +29,10 @@ function storeReducer(state=initialStore, action) {
         console.log(action.strokes.length);
         console.log(`url: ${url}`);
 
-        let foo = {"Scores": [
-                {"name": "john", "scores": [0,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
-                {"name": "tony", "scores": [0,2,3,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
-                {"name": "joe", "scores":  [0,3,4,5,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}
+        let foo = {"AllStrokes": [
+                {"Name": "john", "Scores": [0,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+                {"Name": "tony", "Scores": [0,2,3,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+                {"Name": "joe", "Scores":  [0,3,4,5,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}
             ]
         }
 
