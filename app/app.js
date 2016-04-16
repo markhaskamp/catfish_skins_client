@@ -26,6 +26,7 @@ function storeReducer(state=initialStore, action) {
     case 'add-score':
 
         let url = '/strokes/' + action.name + '/' + action.hole + '/' + action.strokes;
+        console.log(action.strokes.length);
         console.log(`url: ${url}`);
 
         let foo = {"Scores": [
@@ -67,7 +68,7 @@ export default class App extends React.Component {
 
     let catfishId = getCookie('catfishId');
     catfishId = '1234';
-    console.log(`catfishId: ${catfishId}`);
+    // console.log(`catfishId: ${catfishId}`);
 
     if (catfishId === '') {
       return (

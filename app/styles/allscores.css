@@ -2,3 +2,24 @@ background-color {
   color: cyan;
 }
 
+
+.holeName {
+    width: 10%;
+    font-size: 1.25em;
+    color: #000066;
+    float: left;
+}
+
+.holeStrokes {
+    width: 3.5%;
+    font-size: 1.5em;
+    color: #006600;
+    text-align: center;
+    padding: 0.25em;
+    float: left;
+}
+
+.foo {
+    clear: left;
+}
+

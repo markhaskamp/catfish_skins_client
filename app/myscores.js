@@ -24,7 +24,7 @@ class MyScores extends React.Component {
     render() {
         return (
           <div id="myscores">
-            <table>
+            <table width="95%">
 
               <tbody>
               <tr>
