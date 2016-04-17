@@ -24,7 +24,7 @@ function storeReducer(state=initialStore, action) {
 
     switch(action.type) {
     case 'add-score':
-
+        // console.log('add-score -----');
         let url = '/strokes/' + action.name + '/' + action.hole + '/' + action.strokes;
         console.log(`url: ${url}`);
 
@@ -39,24 +39,28 @@ function storeReducer(state=initialStore, action) {
 
         $.ajax({'url': url })
           .done(function(data) {
-            // console.log('.done');
-            // console.log(data);
             // console.log(state);
-            store.dispatch({type:"foo", allScores: data});
+            // debugger;
+            store.dispatch({type:"renderAllScores", allScores: data});
           })
           .fail(function(f) {
-            console.log('FAIL \\/ \\/ \\/');
-            console.log(f);
-            console.log('/\\ /\\ /\\');
+            console.log(`app.js. reducer. ${f}`);
             return state;
           })
+        // console.log('----- add-score');
+        return state;
 
-    case 'foo':
-        console.log('foo');
-        console.log(action);
-        console.log(action.allScores);
-        console.log(action.allScores.AllStrokes);
-        return action.allScores;
+    case 'renderAllScores':
+        // debugger;
+        // console.log('renderAllScores -----');
+        // console.log(action);
+        // console.log(action.type);
+        // console.log(JSON.parse(action.allScores));
+        // console.log(action.allScores);
+        // console.log(action.allScores.AllStrokes);
+        // console.log('----- renderAllScores');
+
+        return {allScores: JSON.parse(action.allScores)};
 
     default:
         return state;

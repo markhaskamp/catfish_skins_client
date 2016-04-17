@@ -20,21 +20,26 @@ class AllScores extends React.Component {
     }
 
     render() {
-        console.log('allscores.render(). start.');
+        // debugger;
+        // console.log('allscores.render() -----');
         var that = this;
         const props = this.props;
         const { store } = props;
         const state = store.getState();
         // console.log('state');
         // console.log(state);
-        // console.log('-----');
+        // console.log('----- allsxores.render()');
 
-        return (
-            <div id="allscores">
-              <hr />
-              {this.showGolfer(state.allScores.AllStrokes)}
-            </div>
-      );
+        if (state.allScores !== undefined) {
+            return (
+                <div id="allscores">
+                  <hr />
+                  {this.showGolfer(state.allScores.AllStrokes)}
+                </div>
+            );
+        } else {
+          return <div/>
+        }
     }
 
     showGolfer(scores) {
