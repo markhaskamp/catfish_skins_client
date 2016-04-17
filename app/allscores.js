@@ -20,12 +20,14 @@ class AllScores extends React.Component {
     }
 
     render() {
+        console.log('allscores.render(). start.');
         var that = this;
         const props = this.props;
         const { store } = props;
-        // const state = store.getState();
-
-        let state = store.getState();
+        const state = store.getState();
+        // console.log('state');
+        // console.log(state);
+        // console.log('-----');
 
         return (
             <div id="allscores">

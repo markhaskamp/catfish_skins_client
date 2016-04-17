@@ -14,11 +14,20 @@ class MyScores extends React.Component {
     handleChangeHoleScore(e) {
       let hole = e.target.id;
       let selector = '#' + hole;
+      let strokes = $(selector).val();
+
+      if (isNaN(strokes)) {
+        return;
+      }
+
+      if (strokes.length === 0) {
+        return;
+      }
 
       this.props.dispatch({type:      'add-score',
                            "name":    $('#txtName').val(),
                            "hole":    hole,
-                           "strokes": $(selector).val()});
+                           "strokes": strokes});
     }
 
     render() {

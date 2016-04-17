@@ -26,36 +26,37 @@ function storeReducer(state=initialStore, action) {
     case 'add-score':
 
         let url = '/strokes/' + action.name + '/' + action.hole + '/' + action.strokes;
-        console.log(action.strokes.length);
         console.log(`url: ${url}`);
 
+        /*
         let foo = {"AllStrokes": [
                 {"Name": "john", "Scores": [0,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
                 {"Name": "tony", "Scores": [0,2,3,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
                 {"Name": "joe", "Scores":  [0,3,4,5,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}
             ]
         }
+        */
 
-        /*
         $.ajax({'url': url })
           .done(function(data) {
-            console.log('.done');
-            console.log(data);
+            // console.log('.done');
+            // console.log(data);
+            // console.log(state);
+            store.dispatch({type:"foo", allScores: data});
           })
           .fail(function(f) {
             console.log('FAIL \\/ \\/ \\/');
             console.log(f);
             console.log('/\\ /\\ /\\');
+            return state;
           })
-          */
 
-                // allScores: state.allScores
-                /*
-                this.setState({"allScores": foo}) 
-                return state
-                */
-
-        return {"allScores": foo}
+    case 'foo':
+        console.log('foo');
+        console.log(action);
+        console.log(action.allScores);
+        console.log(action.allScores.AllStrokes);
+        return action.allScores;
 
     default:
         return state;
