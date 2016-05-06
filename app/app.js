@@ -47,15 +47,17 @@ function storeReducer(state=initialStore, action) {
         // console.log(action.allScores.AllStrokes);
         // console.log('----- renderAllScores');
 
-        let foo = {"AllStrokes": [
+        /*
+        let testData = {"AllStrokes": [
                 {"Name": "john", "Scores": [3,2,0,0,0,0,0,0,0]},
                 {"Name": "tony", "Scores": [2,3,4,0,0,0,0,0,0]},
                 {"Name": "joe", "Scores":  [3,4,5,6,0,0,0,0,0]}
             ]
         }
+        */
 
-        return {allScores: foo};
-        // return {allScores: JSON.parse(action.allScores)};
+        // return {allScores: testData};
+        return {allScores: JSON.parse(action.allScores)};
 
     default:
         return state;
