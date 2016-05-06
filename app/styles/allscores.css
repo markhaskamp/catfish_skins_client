@@ -5,20 +5,29 @@ background-color {
 
 .holeName {
     width: 10%;
-    font-size: 1.25em;
+    font-size: 2.0em;
     color: #000066;
     float: left;
 }
 
 .holeStrokes {
-    width: 3.5%;
-    font-size: 1.5em;
+    width: 6.0%;
+    font-size: 2.0em;
     color: #006600;
     text-align: center;
     padding: 0.25em;
     float: left;
 }
 
+.total {
+    width: 6.0%;
+    font-size: 2.0em;
+    color: #000066;
+    text-align: center;
+    padding: 0.25em;
+    border: 1px solid black;
+    float: left;
+}
 .foo {
     clear: left;
 }

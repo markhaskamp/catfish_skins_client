@@ -11,16 +11,9 @@ import '../app/styles/app.css';
 
 
 let initialStore = { allScores: { Scores: [] }};
-
 let store = createStore(storeReducer);
 
 function storeReducer(state=initialStore, action) {
-
-        /*
-    console.log('=== in storeReducer ===');
-    console.log('action:');
-    console.log(action)
-        */
 
     switch(action.type) {
     case 'add-score':
@@ -28,24 +21,18 @@ function storeReducer(state=initialStore, action) {
         let url = '/strokes/' + action.name + '/' + action.hole + '/' + action.strokes;
         console.log(`url: ${url}`);
 
-        /*
-        let foo = {"AllStrokes": [
-                {"Name": "john", "Scores": [0,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
-                {"Name": "tony", "Scores": [0,2,3,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
-                {"Name": "joe", "Scores":  [0,3,4,5,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}
-            ]
-        }
-        */
 
         $.ajax({'url': url })
           .done(function(data) {
             // console.log(state);
             // debugger;
+            console.log('app. reducer. case-add-score. data');
+            console.log(data);
             store.dispatch({type:"renderAllScores", allScores: data});
           })
           .fail(function(f) {
-            console.log(`app.js. reducer. ${f}`);
-            return state;
+            console.log(`error. app.js. reducer. ${f}`);
+            store.dispatch({type:"renderAllScores", allScores: {}});
           })
         // console.log('----- add-score');
         return state;
@@ -60,7 +47,15 @@ function storeReducer(state=initialStore, action) {
         // console.log(action.allScores.AllStrokes);
         // console.log('----- renderAllScores');
 
-        return {allScores: JSON.parse(action.allScores)};
+        let foo = {"AllStrokes": [
+                {"Name": "john", "Scores": [3,2,0,0,0,0,0,0,0]},
+                {"Name": "tony", "Scores": [2,3,4,0,0,0,0,0,0]},
+                {"Name": "joe", "Scores":  [3,4,5,6,0,0,0,0,0]}
+            ]
+        }
+
+        return {allScores: foo};
+        // return {allScores: JSON.parse(action.allScores)};
 
     default:
         return state;

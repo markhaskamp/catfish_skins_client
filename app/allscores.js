@@ -45,19 +45,20 @@ class AllScores extends React.Component {
     showGolfer(scores) {
         if (scores != undefined) {
         return scores.map((s) => {
+                let total = s.Scores.reduce((a,b) => a+b);
                 return (
                     <div className="allScoreRow">
-                            <div className="holeName">{s.Name}</div>
-                            {s.Scores.map((strokes) => {
-                        return <div className="holeStrokes">{strokes}</div>;
-                })}
-                <div className="foo">&nbsp;</div>
-                </div>
+                        <div className="holeName">{s.Name}</div>
+                        {s.Scores.map((strokes) => {
+                            return <div className="holeStrokes">{strokes}</div>;
+                        })}
+                        <div className="total">{total}</div>
+                        <div className="foo">&nbsp;</div>
+                    </div>
                 );
         });
         }
     }
-
 }
 
 export default connect()(AllScores);
